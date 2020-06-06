@@ -3,10 +3,12 @@ require 'rails_helper'
 RSpec.describe Message, type: :model do
   describe '#create' do
     before do
-      user = FacrtoryBot.create(:user)
-      room = FacrtoryBot.create(:room)
+      user = FactoryBot.create(:user)
+      room = FactoryBot.create(:room)
       @message = FactoryBot.build(:message, user_id: user.id, room_id: room.id)
-      @message.image = Rails.root.join('public/images/test_image.png')
+      image_path = Rails.root.join('public/images/hip.jpg')
+      image = fixture_file_upload(image_path, 'image/jpg')
+      @message.image.attach(image)
     end
 
     it 'contentとimageが存在していれば保存できること' do
