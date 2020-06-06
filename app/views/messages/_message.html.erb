@@ -9,5 +9,6 @@
 <div class="lower-meesage">
   <div class="message-content">
     <%= message.content %>
+    <%= image_tag message.image.variant(resize:'500x500'), class: 'MessageImage' if message.image.present?%>
   </div>
 </div>
